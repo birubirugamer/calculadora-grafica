@@ -2,40 +2,46 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora de Orçamento - Máxima</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div class="container">
     <h1>Calculadora de Orçamento</h1>
 
+    <label>Produto:</label>
+    <select id="produto" onchange="selecionarProduto()">
+      <option value="">Selecione um produto</option>
+      <option value="80">Banner lona - R$ 80/m²</option>
+      <option value="100">Adesivo vinil - R$ 100/m²</option>
+      <option value="120">Adesivo perfurado - R$ 120/m²</option>
+      <option value="150">Placa PS - R$ 150/m²</option>
+    </select>
+
     <label>Largura em metros:</label>
-    <input type="number" id="largura" placeholder="Ex: 1.50">
+    <input type="number" id="largura" placeholder="Ex: 1.50" step="0.01">
 
     <label>Altura em metros:</label>
-    <input type="number" id="altura" placeholder="Ex: 1.00">
-        <label>Produto:</label>
-      <select id="produto" onchange="selecionarProduto()">
-        <option value="">Selecione um produto</option>
-        <option value="80">Banner lona - R$ 80/m²</option>
-        <option value="100">Adesivo vinil - R$ 100/m²</option>
-        <option value="120">Adesivo perfurado - R$ 120/m²</option>
-        <option value="150">Placa PS - R$ 150/m²</option>
-      </select>
+    <input type="number" id="altura" placeholder="Ex: 1.00" step="0.01">
 
     <label>Preço por m²:</label>
-    <input type="number" id="preco" placeholder="Ex: 80">
+    <input type="number" id="preco" placeholder="Ex: 80" step="0.01">
 
     <label>Quantidade:</label>
     <input type="number" id="quantidade" placeholder="Ex: 1" value="1">
 
     <button onclick="calcular()">Calcular</button>
-    <button onclick="copiarOrcamento()">Copiar orçamento</button>
+
+    <button onclick="copiarOrcamento()" class="botao-secundario">
+      Copiar orçamento
+    </button>
 
     <h2 id="resultado">Resultado: R$ 0,00</h2>
     <p id="resultadoReal">Valor real: R$ 0,00</p>
   </div>
-
 
   <script src="script.js"></script>
 </body>
