@@ -5,32 +5,58 @@ function formatarMoeda(valor) {
 }
 
 function selecionarProduto() {
-  let produto = document.getElementById("produto").value;
+  let produto = document.getElementById("produto");
+  let precoSelecionado = produto.value;
 
-  if (produto !== "") {
-    document.getElementById("preco").value = produto;
+  if (precoSelecionado !== "") {
+    document.getElementById("precoProduto").value = precoSelecionado;
+  } else {
+    document.getElementById("precoProduto").value = "";
   }
+}
+
+function atualizarPrecoProduto() {
+  let produto = document.getElementById("produto");
+  let precoProduto = Number(document.getElementById("precoProduto").value);
+
+  for (let i = 0; i < produto.options.length; i++) {
+    if (Number(produto.options[i].value) === precoProduto) {
+      produto.selectedIndex = i;
+      return;
+    }
+  }
+}
+
+function pegarNomeProduto() {
+  let select = document.getElementById("produto");
+
+  if (select.value === "") {
+    return "Produto não informado";
+  }
+
+  return select.options[select.selectedIndex].dataset.nome;
 }
 
 function calcular() {
   let largura = Number(document.getElementById("largura").value);
   let altura = Number(document.getElementById("altura").value);
-  let preco = Number(document.getElementById("preco").value);
+  let precoProduto = Number(document.getElementById("precoProduto").value);
   let quantidade = Number(document.getElementById("quantidade").value);
 
+  if (largura <= 0 || altura <= 0 || precoProduto <= 0 || quantidade <= 0) {
+    alert("Preencha todos os campos corretamente.");
+    return;
+  }
+
   let area = largura * altura;
-  let totalReal = area * preco * quantidade;
+  let totalReal = area * precoProduto * quantidade;
 
   let totalFinal = totalReal;
 
-  // Valor mínimo de R$ 20,00
   if (totalFinal < 20) {
     totalFinal = 20;
   }
 
-  // Arredondamento de 5 em 5
-  // R$ 20,00 continua R$ 20,00
-  // Valores redondos acima de R$ 20,00 somam + R$ 5,00
   if (totalFinal === 20) {
     totalFinal = 20;
   } else if (totalFinal % 5 === 0) {
@@ -49,20 +75,11 @@ function calcular() {
 `Orçamento Máxima
 
 Produto: ${pegarNomeProduto()}
+Preço do produto: ${formatarMoeda(precoProduto)}
 Medida: ${largura}m x ${altura}m
 Área: ${area.toFixed(2).replace(".", ",")} m²
 Quantidade: ${quantidade}
 Valor final: ${formatarMoeda(totalFinal)}`;
-}
-
-function pegarNomeProduto() {
-  let select = document.getElementById("produto");
-
-  if (select.value === "") {
-    return "Produto não informado";
-  }
-
-  return select.options[select.selectedIndex].text;
 }
 
 function copiarOrcamento() {
