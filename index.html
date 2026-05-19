@@ -14,21 +14,35 @@
 
     <label>Produto:</label>
     <select id="produto" onchange="selecionarProduto()">
-      <option value="">Selecione um produto</option>
-      <option value="80">Banner lona - R$ 80/m²</option>
-      <option value="100">Adesivo vinil - R$ 100/m²</option>
-      <option value="120">Adesivo perfurado - R$ 120/m²</option>
-      <option value="150">Placa PS - R$ 150/m²</option>
+      <option value="" data-nome="Produto não informado">Selecione um produto</option>
+      <option value="80" data-nome="Banner lona">Banner lona</option>
+      <option value="100" data-nome="Adesivo vinil">Adesivo vinil</option>
+      <option value="120" data-nome="Adesivo perfurado">Adesivo perfurado</option>
+      <option value="150" data-nome="Placa PS">Placa PS</option>
     </select>
+
+    <div class="caixa-preco-produto">
+      <span>Preço do produto</span>
+
+      <div class="campo-preco">
+        <strong>R$</strong>
+        <input 
+          type="number" 
+          id="precoProduto" 
+          placeholder="Ex: 80" 
+          step="0.01"
+          oninput="atualizarPrecoProduto()"
+        >
+      </div>
+
+      <small>Você pode alterar o valor manualmente.</small>
+    </div>
 
     <label>Largura em metros:</label>
     <input type="number" id="largura" placeholder="Ex: 1.50" step="0.01">
 
     <label>Altura em metros:</label>
     <input type="number" id="altura" placeholder="Ex: 1.00" step="0.01">
-
-    <label>Preço por m²:</label>
-    <input type="number" id="preco" placeholder="Ex: 80" step="0.01">
 
     <label>Quantidade:</label>
     <input type="number" id="quantidade" placeholder="Ex: 1" value="1">
