@@ -48,10 +48,21 @@ function calcular() {
   ultimoOrcamento =
 `Orçamento Máxima
 
+Produto: ${pegarNomeProduto()}
 Medida: ${largura}m x ${altura}m
 Área: ${area.toFixed(2).replace(".", ",")} m²
 Quantidade: ${quantidade}
 Valor final: ${formatarMoeda(totalFinal)}`;
+}
+
+function pegarNomeProduto() {
+  let select = document.getElementById("produto");
+
+  if (select.value === "") {
+    return "Produto não informado";
+  }
+
+  return select.options[select.selectedIndex].text;
 }
 
 function copiarOrcamento() {
