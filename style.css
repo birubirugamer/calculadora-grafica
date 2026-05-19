@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial Black, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -17,7 +17,7 @@ body {
 .container {
   background: #ffffff;
   width: 100%;
-  max-width: 420px;
+  max-width: 430px;
   padding: 30px;
   border-radius: 18px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
@@ -34,10 +34,11 @@ label {
   display: block;
   margin-bottom: 6px;
   font-weight: bold;
-  color: #333;
+  color: #333333;
 }
 
-input {
+input,
+select {
   width: 100%;
   padding: 12px;
   border: 2px solid #dcdcdc;
@@ -45,9 +46,11 @@ input {
   font-size: 16px;
   margin-bottom: 18px;
   outline: none;
+  background: #ffffff;
 }
 
-input:focus {
+input:focus,
+select:focus {
   border-color: #004aad;
 }
 
@@ -55,18 +58,28 @@ button {
   width: 100%;
   padding: 14px;
   background: #004aad;
-  color: white;
+  color: #ffffff;
   border: none;
   border-radius: 12px;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
+  margin-top: 5px;
 }
 
 button:hover {
   background: #003680;
   transform: scale(1.02);
+}
+
+.botao-secundario {
+  background: #00a6ff;
+  margin-top: 10px;
+}
+
+.botao-secundario:hover {
+  background: #0084cc;
 }
 
 #resultado {
@@ -77,4 +90,11 @@ button:hover {
   border-radius: 12px;
   text-align: center;
   font-size: 22px;
+}
+
+#resultadoReal {
+  margin-top: 10px;
+  text-align: center;
+  color: #555555;
+  font-size: 15px;
 }
