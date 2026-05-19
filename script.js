@@ -4,6 +4,14 @@ function formatarMoeda(valor) {
   return "R$ " + valor.toFixed(2).replace(".", ",");
 }
 
+function selecionarProduto() {
+  let produto = document.getElementById("produto").value;
+
+  if (produto !== "") {
+    document.getElementById("preco").value = produto;
+  }
+}
+
 function calcular() {
   let largura = Number(document.getElementById("largura").value);
   let altura = Number(document.getElementById("altura").value);
@@ -15,17 +23,22 @@ function calcular() {
 
   let totalFinal = totalReal;
 
+  // Valor mínimo de R$ 20,00
   if (totalFinal < 20) {
     totalFinal = 20;
   }
 
-if (totalFinal === 20) {
-  totalFinal = 20;
-} else if (totalFinal % 5 === 0) {
-  totalFinal = totalFinal + 5;
-} else {
-  totalFinal = Math.ceil(totalFinal / 5) * 5;
-}
+  // Arredondamento de 5 em 5
+  // R$ 20,00 continua R$ 20,00
+  // Valores redondos acima de R$ 20,00 somam + R$ 5,00
+  if (totalFinal === 20) {
+    totalFinal = 20;
+  } else if (totalFinal % 5 === 0) {
+    totalFinal = totalFinal + 5;
+  } else {
+    totalFinal = Math.ceil(totalFinal / 5) * 5;
+  }
+
   document.getElementById("resultado").innerText =
     "Resultado: " + formatarMoeda(totalFinal);
 
