@@ -19,12 +19,13 @@ function calcular() {
     totalFinal = 20;
   }
 
-  if (totalFinal % 5 === 0) {
-    totalFinal = totalFinal + 5;
-  } else {
-    totalFinal = Math.ceil(totalFinal / 5) * 5;
-  }
-
+if (totalFinal === 20) {
+  totalFinal = 20;
+} else if (totalFinal % 5 === 0) {
+  totalFinal = totalFinal + 5;
+} else {
+  totalFinal = Math.ceil(totalFinal / 5) * 5;
+}
   document.getElementById("resultado").innerText =
     "Resultado: " + formatarMoeda(totalFinal);
 
