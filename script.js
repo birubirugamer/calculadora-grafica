@@ -59,6 +59,8 @@ function adicionarItem() {
   `;
 
   container.appendChild(item);
+
+  renumerarItens();
   calcularTotal();
 }
 
@@ -66,7 +68,19 @@ function removerItem(botao) {
   const item = botao.closest(".item-orcamento");
   item.remove();
 
+  renumerarItens();
   calcularTotal();
+}
+
+function renumerarItens() {
+  const itens = document.querySelectorAll(".item-orcamento");
+
+  itens.forEach((item, index) => {
+    const titulo = item.querySelector(".cabecalho-item h3");
+    titulo.textContent = `Item ${index + 1}`;
+  });
+
+  contadorItens = itens.length;
 }
 
 function calcularTotal() {
