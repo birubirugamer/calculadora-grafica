@@ -9,53 +9,52 @@
 </head>
 <body>
 
-  <div class="container">
-    <h1>Calculadora de Orçamento</h1>
+  <main class="container">
 
-    <label>Produto:</label>
-    <select id="produto" onchange="selecionarProduto()">
-      <option value="" data-nome="Produto não informado">Selecione um produto</option>
-      <option value="80" data-nome="Banner lona">Banner lona</option>
-      <option value="100" data-nome="Adesivo vinil">Adesivo vinil</option>
-      <option value="120" data-nome="Adesivo perfurado">Adesivo perfurado</option>
-      <option value="150" data-nome="Placa PS">Placa PS</option>
-    </select>
+    <section class="topo">
+      <h1>Calculadora de Orçamento</h1>
+      <p>Adicione vários itens com medidas diferentes e veja o valor final do orçamento.</p>
+    </section>
 
-    <div class="caixa-preco-produto">
-      <span>Preço do produto</span>
-
+    <section class="preco-produto">
+      <label for="precoProduto">Preço do produto por m²</label>
       <div class="campo-preco">
-        <strong>R$</strong>
+        <span>R$</span>
         <input 
           type="number" 
           id="precoProduto" 
           placeholder="Ex: 80" 
+          min="0" 
           step="0.01"
-          oninput="atualizarPrecoProduto()"
+          oninput="calcularTotal()"
         >
       </div>
+    </section>
 
-      <small>Você pode alterar o valor manualmente.</small>
-    </div>
+    <section class="area-itens">
+      <div class="titulo-itens">
+        <h2>Itens do orçamento</h2>
+        <button type="button" class="btn-adicionar" onclick="adicionarItem()">
+          Adicionar item
+        </button>
+      </div>
 
-    <label>Largura em metros:</label>
-    <input type="number" id="largura" placeholder="Ex: 1.50" step="0.01">
+      <div id="itens"></div>
+    </section>
 
-    <label>Altura em metros:</label>
-    <input type="number" id="altura" placeholder="Ex: 1.00" step="0.01">
+    <section class="resultado-final">
+      <div>
+        <span>Total geral</span>
+        <strong id="totalGeral">R$ 0,00</strong>
+      </div>
 
-    <label>Quantidade:</label>
-    <input type="number" id="quantidade" placeholder="Ex: 1" value="1">
+      <div>
+        <span>Valor real sem arredondamento</span>
+        <strong id="totalReal">R$ 0,00</strong>
+      </div>
+    </section>
 
-    <button onclick="calcular()">Calcular</button>
-
-    <button onclick="copiarOrcamento()" class="botao-secundario">
-      Copiar orçamento
-    </button>
-
-    <h2 id="resultado">Resultado: R$ 0,00</h2>
-    <p id="resultadoReal">Valor real: R$ 0,00</p>
-  </div>
+  </main>
 
   <script src="script.js"></script>
 </body>
