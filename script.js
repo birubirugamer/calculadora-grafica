@@ -1,94 +1,128 @@
-let ultimoOrcamento = "";
+let contadorItens = 0;
+
+window.onload = function () {
+  adicionarItem();
+};
+
+function adicionarItem() {
+  contadorItens++;
+
+  const container = document.getElementById("itens");
+
+  const item = document.createElement("div");
+  item.classList.add("item-orcamento");
+
+  item.innerHTML = `
+    <div class="cabecalho-item">
+      <h3>Item ${contadorItens}</h3>
+      <button type="button" class="btn-remover" onclick="removerItem(this)">
+        Remover
+      </button>
+    </div>
+
+    <div class="campos">
+      <div class="campo">
+        <label>Largura em metros</label>
+        <input 
+          type="number" 
+          class="largura" 
+          placeholder="Ex: 1.20" 
+          min="0" 
+          step="0.01" 
+          oninput="calcularTotal()"
+        >
+      </div>
+
+      <div class="campo">
+        <label>Altura em metros</label>
+        <input 
+          type="number" 
+          class="altura" 
+          placeholder="Ex: 0.90" 
+          min="0" 
+          step="0.01" 
+          oninput="calcularTotal()"
+        >
+      </div>
+
+      <div class="campo">
+        <label>Quantidade</label>
+        <input 
+          type="number" 
+          class="quantidade" 
+          value="1" 
+          min="1" 
+          step="1" 
+          oninput="calcularTotal()"
+        >
+      </div>
+    </div>
+
+    <div class="resultado-item">
+      <p>Valor real: <strong class="valor-real-item">R$ 0,00</strong></p>
+      <p>Valor final: <strong class="valor-final-item">R$ 0,00</strong></p>
+    </div>
+  `;
+
+  container.appendChild(item);
+  calcularTotal();
+}
+
+function removerItem(botao) {
+  const item = botao.closest(".item-orcamento");
+  item.remove();
+
+  calcularTotal();
+}
+
+function calcularTotal() {
+  const precoProduto = parseFloat(document.getElementById("precoProduto").value) || 0;
+  const itens = document.querySelectorAll(".item-orcamento");
+
+  let totalGeral = 0;
+  let totalReal = 0;
+
+  itens.forEach(item => {
+    const largura = parseFloat(item.querySelector(".largura").value) || 0;
+    const altura = parseFloat(item.querySelector(".altura").value) || 0;
+    const quantidade = parseInt(item.querySelector(".quantidade").value) || 1;
+
+    const area = largura * altura;
+    const valorReal = area * precoProduto * quantidade;
+    const valorFinal = arredondarValor(valorReal);
+
+    totalReal += valorReal;
+    totalGeral += valorFinal;
+
+    item.querySelector(".valor-real-item").textContent = formatarMoeda(valorReal);
+    item.querySelector(".valor-final-item").textContent = formatarMoeda(valorFinal);
+  });
+
+  document.getElementById("totalReal").textContent = formatarMoeda(totalReal);
+  document.getElementById("totalGeral").textContent = formatarMoeda(totalGeral);
+}
+
+function arredondarValor(valor) {
+  if (valor <= 0) {
+    return 0;
+  }
+
+  if (valor <= 20) {
+    return 20;
+  }
+
+  let arredondado = Math.ceil(valor / 5) * 5;
+
+  if (valor % 5 === 0) {
+    arredondado += 5;
+  }
+
+  return arredondado;
+}
 
 function formatarMoeda(valor) {
-  return "R$ " + valor.toFixed(2).replace(".", ",");
-}
-
-function selecionarProduto() {
-  let produto = document.getElementById("produto");
-  let precoSelecionado = produto.value;
-
-  if (precoSelecionado !== "") {
-    document.getElementById("precoProduto").value = precoSelecionado;
-  } else {
-    document.getElementById("precoProduto").value = "";
-  }
-}
-
-function atualizarPrecoProduto() {
-  let produto = document.getElementById("produto");
-  let precoProduto = Number(document.getElementById("precoProduto").value);
-
-  for (let i = 0; i < produto.options.length; i++) {
-    if (Number(produto.options[i].value) === precoProduto) {
-      produto.selectedIndex = i;
-      return;
-    }
-  }
-}
-
-function pegarNomeProduto() {
-  let select = document.getElementById("produto");
-
-  if (select.value === "") {
-    return "Produto não informado";
-  }
-
-  return select.options[select.selectedIndex].dataset.nome;
-}
-
-function calcular() {
-  let largura = Number(document.getElementById("largura").value);
-  let altura = Number(document.getElementById("altura").value);
-  let precoProduto = Number(document.getElementById("precoProduto").value);
-  let quantidade = Number(document.getElementById("quantidade").value);
-
-  if (largura <= 0 || altura <= 0 || precoProduto <= 0 || quantidade <= 0) {
-    alert("Preencha todos os campos corretamente.");
-    return;
-  }
-
-  let area = largura * altura;
-  let totalReal = area * precoProduto * quantidade;
-
-  let totalFinal = totalReal;
-
-  if (totalFinal < 20) {
-    totalFinal = 20;
-  }
-
-  if (totalFinal === 20) {
-    totalFinal = 20;
-  } else if (totalFinal % 5 === 0) {
-    totalFinal = totalFinal + 5;
-  } else {
-    totalFinal = Math.ceil(totalFinal / 5) * 5;
-  }
-
-  document.getElementById("resultado").innerText =
-    "Resultado: " + formatarMoeda(totalFinal);
-
-  document.getElementById("resultadoReal").innerText =
-    "Valor real: " + formatarMoeda(totalReal);
-
-  ultimoOrcamento =
-`Orçamento Máxima
-
-Produto: ${pegarNomeProduto()}
-Preço do produto: ${formatarMoeda(precoProduto)}
-Medida: ${largura}m x ${altura}m
-Área: ${area.toFixed(2).replace(".", ",")} m²
-Quantidade: ${quantidade}
-Valor final: ${formatarMoeda(totalFinal)}`;
-}
-
-function copiarOrcamento() {
-  if (ultimoOrcamento === "") {
-    alert("Calcule um orçamento primeiro.");
-    return;
-  }
-
-  navigator.clipboard.writeText(ultimoOrcamento);
-
-  alert("Orçamento copiado!");
+  return valor.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
 }
