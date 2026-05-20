@@ -1,8 +1,4 @@
-let contadorItens = 0;
-
-window.onload = function () {
-  adicionarItem();
-};
+let contadorItens = 1;
 
 function adicionarItem() {
   contadorItens++;
@@ -26,7 +22,6 @@ function adicionarItem() {
         <input 
           type="number" 
           class="largura" 
-          placeholder="Ex: 1.20" 
           min="0" 
           step="0.01" 
           oninput="calcularTotal()"
@@ -38,7 +33,6 @@ function adicionarItem() {
         <input 
           type="number" 
           class="altura" 
-          placeholder="Ex: 0.90" 
           min="0" 
           step="0.01" 
           oninput="calcularTotal()"
