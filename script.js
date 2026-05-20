@@ -68,6 +68,11 @@ function removerItem(botao) {
   const item = botao.closest(".item-orcamento");
   item.remove();
 
+  if (document.querySelectorAll(".item-orcamento").length === 0) {
+    contadorItens = 0;
+    adicionarItem();
+  }
+
   renumerarItens();
   calcularTotal();
 }
