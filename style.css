@@ -7,7 +7,7 @@
 body {
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(135deg, #101820, #1e2d3a);
+  background: linear-gradient(135deg, #1a0b2e, #3b1d63);
   color: #ffffff;
   padding: 30px 15px;
 }
@@ -19,7 +19,7 @@ body {
   color: #222222;
   border-radius: 20px;
   padding: 30px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 50px rgba(45, 16, 84, 0.45);
 }
 
 .topo {
@@ -30,17 +30,17 @@ body {
 .topo h1 {
   font-size: 32px;
   margin-bottom: 10px;
-  color: #111111;
+  color: #2b124c;
 }
 
 .topo p {
   font-size: 16px;
-  color: #666666;
+  color: #6d5a7d;
 }
 
 .preco-produto {
-  background: #f5f7fa;
-  border: 2px solid #e2e6ea;
+  background: #f7f1ff;
+  border: 2px solid #dec9ff;
   border-radius: 16px;
   padding: 20px;
   margin-bottom: 25px;
@@ -51,6 +51,7 @@ body {
   font-weight: bold;
   margin-bottom: 10px;
   font-size: 17px;
+  color: #2b124c;
 }
 
 .campo-preco {
@@ -58,7 +59,7 @@ body {
   align-items: center;
   gap: 10px;
   background: #ffffff;
-  border: 2px solid #d8dde3;
+  border: 2px solid #c9a7ff;
   border-radius: 12px;
   padding: 10px 15px;
 }
@@ -66,7 +67,7 @@ body {
 .campo-preco span {
   font-size: 22px;
   font-weight: bold;
-  color: #008542;
+  color: #7b2cff;
 }
 
 .campo-preco input {
@@ -75,7 +76,7 @@ body {
   outline: none;
   font-size: 24px;
   font-weight: bold;
-  color: #111111;
+  color: #2b124c;
 }
 
 .area-itens {
@@ -92,12 +93,12 @@ body {
 
 .titulo-itens h2 {
   font-size: 24px;
-  color: #111111;
+  color: #2b124c;
 }
 
 .btn-adicionar {
   border: none;
-  background: #008542;
+  background: #7b2cff;
   color: #ffffff;
   padding: 12px 18px;
   font-size: 15px;
@@ -108,13 +109,13 @@ body {
 }
 
 .btn-adicionar:hover {
-  background: #006b35;
+  background: #5e20c7;
   transform: scale(1.03);
 }
 
 .item-orcamento {
-  background: #f8f9fb;
-  border: 2px solid #e1e5ea;
+  background: #fbf8ff;
+  border: 2px solid #e4d4ff;
   border-radius: 16px;
   padding: 20px;
   margin-bottom: 18px;
@@ -129,12 +130,12 @@ body {
 
 .cabecalho-item h3 {
   font-size: 21px;
-  color: #111111;
+  color: #2b124c;
 }
 
 .btn-remover {
   border: none;
-  background: #d93025;
+  background: #c026d3;
   color: #ffffff;
   padding: 9px 14px;
   font-size: 14px;
@@ -145,7 +146,7 @@ body {
 }
 
 .btn-remover:hover {
-  background: #b3261e;
+  background: #9813a8;
 }
 
 .campos {
@@ -158,22 +159,23 @@ body {
   display: block;
   font-weight: bold;
   margin-bottom: 7px;
-  color: #333333;
+  color: #3b1d63;
 }
 
 .campo input {
   width: 100%;
-  border: 2px solid #d8dde3;
+  border: 2px solid #d7c2ff;
   border-radius: 10px;
   padding: 13px;
   font-size: 17px;
   outline: none;
   transition: 0.2s;
+  color: #2b124c;
 }
 
 .campo input:focus {
-  border-color: #008542;
-  box-shadow: 0 0 0 3px rgba(0, 133, 66, 0.12);
+  border-color: #7b2cff;
+  box-shadow: 0 0 0 3px rgba(123, 44, 255, 0.15);
 }
 
 .resultado-item {
@@ -184,21 +186,21 @@ body {
   border-radius: 12px;
   margin-top: 18px;
   padding: 15px;
-  border: 1px solid #e1e5ea;
+  border: 1px solid #e4d4ff;
 }
 
 .resultado-item p {
   font-size: 16px;
-  color: #444444;
+  color: #5f4b75;
 }
 
 .resultado-item strong {
-  color: #008542;
+  color: #7b2cff;
   font-size: 18px;
 }
 
 .resultado-final {
-  background: #111111;
+  background: linear-gradient(135deg, #2b124c, #4c1d95);
   color: #ffffff;
   border-radius: 18px;
   padding: 25px;
@@ -208,21 +210,22 @@ body {
 }
 
 .resultado-final div {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.10);
   border-radius: 14px;
   padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .resultado-final span {
   display: block;
   font-size: 15px;
-  color: #cccccc;
+  color: #e6d8ff;
   margin-bottom: 8px;
 }
 
 .resultado-final strong {
   font-size: 28px;
-  color: #00c853;
+  color: #d8b4fe;
 }
 
 @media (max-width: 700px) {
